@@ -36,17 +36,17 @@ export const ceoProfileData: CeoDetails = {
   designation: "Managing Director",
   professionalProfile: [
     "Visionary Leader",
-    "8+ Years of Professional Leadership Experience",
+    "10+ Years of Professional Leadership Experience",
     "Expert in PMC, EPC & Project Delivery",
     "Committed to Creating Value & Transforming Assets",
   ],
   shortBioBullets: [
     "Visionary Leader",
-    "8+ Years of Professional Leadership Experience",
+    "10+ Years of Professional Leadership Experience",
     "Expert in PMC, EPC & Project Delivery",
     "Committed to Creating Value & Transforming Assets",
   ],
-  totalExperience: "9+ Years",
+  totalExperience: "10+ Years",
   education: [
     {
       degree: "Master's Degree, Advanced Construction Management",
@@ -60,7 +60,7 @@ export const ceoProfileData: CeoDetails = {
   ],
   achievements: [
     {
-      title: "₹46+ Cr Direct Client Projects Delivered",
+      title: "₹48+ Cr Direct Client Projects Delivered",
       desc: "Delivered direct client capital milestones across bespoke residences and commercial facilities.",
       tag: "Capital Valuation",
     },
@@ -85,22 +85,22 @@ export const ceoProfileData: CeoDetails = {
   visionStatement: "A VISION TO CREATE VALUE, A COMMITMENT TO TRANSFORM ASSETS",
   companyVision: "To create lasting value and transform physical assets through professional engineering and delivery excellence.",
   companyMission: "Delivering turnkey construction, Project Management Consultancy (PMC), and EPC solutions with uncompromising quality and accountability.",
-  quote: "A VISION TO CREATE VALUE, A COMMITMENT TO TRANSFORM ASSETS",
+  quote: "A VISION TO VALUE, A COMMITMENT TO TRANSFORM ASSETS",
   quoteAuthor: "N.E.Praveen Elangovan — Managing Director",
   bioSummary:
-    "N.E.Praveen Elangovan is the Managing Director of DANAM HOLDINGS. A visionary leader with over 9+ years of dedicated professional experience, he specializes in Project Management Consultancy (PMC), EPC execution, and comprehensive Project Delivery across residential and commercial sectors.",
+    "N.E. Praveen Elangovan is the Managing Director of DANAM HOLDINGS, a visionary leader with over 10 years of dedicated professional experience in Project Management Consultancy (PMC), EPC execution, and comprehensive project delivery across residential and commercial sectors.Committed to Creating Value & Transforming Assets, he focuses on delivering strategic solutions, enhancing asset potential, and driving sustainable growth through excellence in project execution and management.",
   floatingCards: [
     {
       id: "exp",
       title: "Total Experience",
-      value: "9+ Years",
+      value: "10+ Years",
       subtitle: "Professional leadership in PMC & EPC",
       position: "top-left",
     },
     {
       id: "direct-projects",
       title: "Direct Client Projects",
-      value: "₹46+ Cr",
+      value: "₹48+ Cr",
       subtitle: "Capital valuation delivered",
       position: "top-right",
     },

@@ -558,7 +558,7 @@ export const ContactSection: React.FC = () => {
                     className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-3.5 py-2.5 text-xs font-semibold rounded-xl hover:bg-emerald-700 transition-colors shadow-xs"
                   >
                     <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
-                    <span>WhatsApp 8110006913</span>
+                    <span>WhatsApp</span>
                   </button>
                   <button
                     type="button"
@@ -566,7 +566,7 @@ export const ContactSection: React.FC = () => {
                     className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-3.5 py-2.5 text-xs font-semibold rounded-xl hover:bg-emerald-700 transition-colors shadow-xs"
                   >
                     <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
-                    <span>WhatsApp 9566320944</span>
+                    <span>WhatsApp</span>
                   </button>
                 </div>
               </div>

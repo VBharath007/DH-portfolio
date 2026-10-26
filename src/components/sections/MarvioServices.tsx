@@ -9,26 +9,36 @@ interface MarvioServicesProps {
   onNavigate?: (section: string) => void;
 }
 
-const SERVICES = [
+interface ServiceItem {
+  title: string;
+  subtitle: string;
+  desc: string;
+  image: string;
+  isBlueprint?: boolean;
+  points: string[];
+}
+
+const SERVICES: ServiceItem[] = [
   {
     title: "Turnkey Construction",
     subtitle: "End-to-End Civil Delivery",
     desc: "Comprehensive engineering execution from structural foundations to luxury interior handover with single-point accountability.",
-    image: "/images/ventures/venture-01-turnkey.jpg",
+    image: "/projects/RAJEEV Enclave/l02myqf4smtcnk5kcuw7.webp",
     points: ["Structural Integrity", "Procurement Oversight", "Zero-Defect Handover"],
   },
   {
     title: "Project Management Consultancy (PMC)",
     subtitle: "Strategic Project Governance",
     desc: "Rigorous milestone scheduling, budget optimization, technical audits, and quality control for high-capital ventures.",
-    image: "/images/ventures/venture-02-pmc.jpg",
+    image: "/projects/VINOTH BJV/VINOTH - BJV (D.W)(5.1.26) -2-Model.webp",
+    isBlueprint: true,
     points: ["Contractual Administration", "Budget & Cost Governance", "Risk Mitigation"],
   },
   {
     title: "EPC Engineering & Turnkey Solutions",
     subtitle: "Comprehensive Infrastructure",
     desc: "Integrated Engineering, Procurement, and Construction framework tailored for corporate and institutional facilities.",
-    image: "/images/ventures/venture-03-epc.jpg",
+    image: "/projects/RAJEEV Enclave/wjrmzyba7dgb104ixvtw.webp",
     points: ["Engineering Lifecycle", "Vendor Rationalization", "Asset Optimization"],
   },
 ];
@@ -72,52 +82,79 @@ export const MarvioServices: React.FC<MarvioServicesProps> = ({ onNavigate }) =>
         </p>
       </div>
 
-        {/* Marvio Feature Grid with Reflective Glass Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {SERVICES.map((serv, idx) => (
-            <div
-              key={serv.title}
-              className="group p-6 sm:p-7 rounded-3xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                {/* Feature Image Banner */}
-                <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-6 border border-white/10">
-                  <Image
-                    src={serv.image}
-                    alt={serv.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-3 left-3 text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">
-                    VENTURE 0{idx + 1}
-                  </span>
-                </div>
+      {/* Marvio Feature Grid with Reflective Glass Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {SERVICES.map((serv, idx) => (
+          <div
+            key={serv.title}
+            className="group p-6 sm:p-7 rounded-3xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              {/* Feature Image Banner */}
+              <div
+                className={`relative aspect-video w-full rounded-2xl overflow-hidden mb-6 border transition-all duration-300 ${
+                  serv.isBlueprint
+                    ? "bg-white p-1 border-white/20 shadow-md"
+                    : "border-white/10 bg-black/40"
+                }`}
+              >
+                <Image
+                  src={serv.image}
+                  alt={serv.title}
+                  fill
+                  unoptimized={serv.isBlueprint}
+                  quality={serv.isBlueprint ? 100 : 85}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className={`${
+                    serv.isBlueprint
+                      ? "object-contain p-1 group-hover:scale-105"
+                      : "object-cover object-center group-hover:scale-105"
+                  } transition-transform duration-500`}
+                />
 
-                <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-1">
-                  {serv.subtitle}
+                {/* Photo Gradient (omitted on clean CAD blueprint to keep lines ultra-clear) */}
+                {!serv.isBlueprint ? (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                ) : (
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors pointer-events-none" />
+                )}
+
+                {/* Venture Badge */}
+                <span
+                  className={`absolute bottom-2.5 left-2.5 text-[10px] font-mono uppercase tracking-widest font-bold ${
+                    serv.isBlueprint
+                      ? "px-2.5 py-1 rounded-md bg-[#121426]/95 text-emerald-400 border border-white/20 backdrop-blur-md shadow-md"
+                      : "text-emerald-400 drop-shadow-md"
+                  }`}
+                >
+                  VENTURE 0{idx + 1}
                 </span>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
-                  {serv.title}
-                </h3>
-                <p className="text-xs text-neutral-300 leading-relaxed mb-6">
-                  {serv.desc}
-                </p>
               </div>
 
-              {/* Bullet Points */}
-              <div className="pt-4 border-t border-white/5 space-y-2">
-                {serv.points.map((pt) => (
-                  <div key={pt} className="flex items-center gap-2 text-xs text-neutral-400">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>{pt}</span>
-                  </div>
-                ))}
-              </div>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-1">
+                {serv.subtitle}
+              </span>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                {serv.title}
+              </h3>
+              <p className="text-xs text-neutral-300 leading-relaxed mb-6">
+                {serv.desc}
+              </p>
             </div>
-          ))}
-        </div>
+
+            {/* Bullet Points */}
+            <div className="pt-4 border-t border-white/5 space-y-2">
+              {serv.points.map((pt) => (
+                <div key={pt} className="flex items-center gap-2 text-xs text-neutral-400">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>{pt}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
+

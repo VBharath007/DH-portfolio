@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink, CheckCircle, ArrowLeft } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink, CheckCircle, ArrowLeft, X } from "lucide-react";
 import { companyData } from "@/data/company";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
@@ -9,24 +9,67 @@ interface MarvioContactProps {
   onNavigate?: (section: string) => void;
 }
 
+const PRIMARY_WHATSAPP_RAW = "919566320944";
+const PRIMARY_WHATSAPP_DISPLAY = "+91 95663 20944";
+
 export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [submittedData, setSubmittedData] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    whatsappUrl: string;
+  } | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    // Format professional WhatsApp message with all form fields
+    const formattedMessage =
+`*New Executive Inquiry - DANAM HOLDINGS*
+----------------------------------------
+*Name:* ${formData.name.trim()}
+*Phone:* ${formData.phone.trim()}
+*Email:* ${formData.email.trim()}
+*Inquiry / Requirements:*
+${formData.message.trim()}
+----------------------------------------
+Sent via Danam Holdings Portfolio`;
+
+    const encodedText = encodeURIComponent(formattedMessage);
+    const whatsappUrl = `https://wa.me/${PRIMARY_WHATSAPP_RAW}?text=${encodedText}`;
+
+    // Directly navigate / open WhatsApp
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    // Save submitted data for popup review & show modal
+    setSubmittedData({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      whatsappUrl,
+    });
+    setShowSuccessModal(true);
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
   };
 
-  const primaryContact = companyData.contactNumbers[0];
-
   return (
-    <div className="w-full flex flex-col justify-center py-4 sm:py-8 space-y-8">
+    <div className="w-full flex flex-col justify-center py-4 sm:py-8 space-y-8 relative">
       {/* Top Back/Breadcrumb Navigation */}
       <div className="flex items-center justify-between pb-6 border-b border-white/10">
         <button
@@ -66,6 +109,7 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
 
       {/* Corporate Coordinates Cards with Reflective Glass */}
       <div className="space-y-4">
+        {/* Headquarters Address */}
         <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex items-start gap-4 group">
           <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
             <MapPin className="w-5 h-5" />
@@ -89,28 +133,37 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {primaryContact && (
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex items-start gap-4 group">
-            <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
-              <Phone className="w-5 h-5" />
-            </div>
-            <div className="relative z-10">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold block mb-1">
-                EXECUTIVE TELEPHONY
-              </span>
-              <a
-                href={primaryContact.telLink}
-                className="text-sm font-bold text-white hover:text-emerald-400 transition-colors font-mono"
-              >
-                {primaryContact.display}
-              </a>
-              <span className="text-[11px] text-neutral-400 block mt-0.5">
-                Direct Line &bull; Mon - Sat 9:00 AM - 7:00 PM IST
-              </span>
-            </div>
+        {/* Executive Telephony: Both phone numbers (+91 81100 06913 & +91 95663 20944) */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex items-start gap-4 group">
+          <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
+            <Phone className="w-5 h-5" />
           </div>
-        )}
+          <div className="relative z-10 flex-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold block mb-1.5">
+              EXECUTIVE TELEPHONY
+            </span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              <a
+                href="tel:+918110006913"
+                className="text-sm font-bold text-white hover:text-emerald-400 transition-colors font-mono inline-flex items-center gap-1.5"
+              >
+                <span>+91 81100 06913</span>
+              </a>
+              <span className="text-neutral-600 hidden sm:inline">&bull;</span>
+              <a
+                href="tel:+919566320944"
+                className="text-sm font-bold text-white hover:text-emerald-400 transition-colors font-mono inline-flex items-center gap-1.5"
+              >
+                <span>+91 95663 20944</span>
+              </a>
+            </div>
+            <span className="text-[11px] text-neutral-400 block mt-1.5">
+              Direct Executive Lines &bull; Mon - Sat 9:00 AM - 7:00 PM IST
+            </span>
+          </div>
+        </div>
 
+        {/* Digital Dispatch (Email) */}
         <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 flex items-start gap-4 group">
           <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
             <Mail className="w-5 h-5" />
@@ -131,17 +184,16 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {primaryContact?.whatsappLink && (
-          <a
-            href={primaryContact.whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full p-4 rounded-2xl reflective-glass-pill bg-emerald-500/15 hover:bg-emerald-500/25 border-emerald-500/40 text-emerald-400 font-semibold text-xs tracking-wider uppercase transition-all flex items-center justify-center gap-2.5 group cursor-pointer shadow-lg shadow-emerald-950/40"
-          >
-            <WhatsAppIcon className="w-5 h-5 text-emerald-400" />
-            <span>Connect via WhatsApp</span>
-          </a>
-        )}
+        {/* Dedicated WhatsApp Button (Connected to +91 95663 20944) */}
+        <a
+          href={`https://wa.me/${PRIMARY_WHATSAPP_RAW}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full p-4 rounded-2xl reflective-glass-pill bg-emerald-500/15 hover:bg-emerald-500/25 border-emerald-500/40 text-emerald-400 font-semibold text-xs tracking-wider uppercase transition-all flex items-center justify-center gap-2.5 group cursor-pointer shadow-lg shadow-emerald-950/40"
+        >
+          <WhatsAppIcon className="w-5 h-5 text-emerald-400" />
+          <span>Connect via WhatsApp</span>
+        </a>
       </div>
 
       {/* Inquiry Form with Reflective Glass */}
@@ -149,90 +201,177 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
         <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 block mb-2">
           TRANSMISSION PORTAL
         </span>
-        <h3 className="text-2xl font-bold text-white mb-6 font-serif">
+        <h3 className="text-2xl font-bold text-white mb-2 font-serif">
           Send an Executive Inquiry
         </h3>
+        <p className="text-xs text-neutral-400 mb-6">
+          Submit your requirements below. Submitting will forward your details directly to our official WhatsApp ({PRIMARY_WHATSAPP_DISPLAY}).
+        </p>
 
-        {submitted ? (
-          <div className="py-12 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
-              <CheckCircle className="w-6 h-6" />
-            </div>
-            <h4 className="text-lg font-bold text-white">Transmission Received</h4>
-            <p className="text-xs text-neutral-400 max-w-sm mx-auto">
-              Thank you. Your inquiry has been forwarded to Mr. Praveen Elangovan&apos;s executive office. We will respond promptly.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                  Your Full Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Anand Kumar"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="+91 98765 43210"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
-                />
-              </div>
-            </div>
-
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                Email Address
+                Your Full Name *
               </label>
               <input
-                type="email"
+                type="text"
                 required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="anand@example.com"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="e.g. Anand Kumar"
                 className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
               />
             </div>
 
             <div>
               <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                Project Mandate / Inquiry Details
+                Phone Number *
               </label>
-              <textarea
-                rows={4}
+              <input
+                type="tel"
                 required
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Please summarize your scope, land area, or consultation requirements..."
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="+91 98765 43210"
                 className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
               />
             </div>
+          </div>
 
-            <button
-              type="submit"
-              className="w-full py-3.5 px-6 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-400/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <Send className="w-3.5 h-3.5" />
-              <span>Submit Executive Inquiry</span>
-            </button>
-          </form>
-        )}
+          <div>
+            <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="anand@example.com"
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
+              Project Mandate / Inquiry Details *
+            </label>
+            <textarea
+              rows={4}
+              required
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              placeholder="Please summarize your scope, land area, or consultation requirements..."
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3.5 px-6 rounded-xl bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider hover:bg-white hover:shadow-lg hover:shadow-emerald-400/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Send className="w-3.5 h-3.5" />
+            <span>Submit &amp; Send to WhatsApp</span>
+          </button>
+        </form>
       </div>
+
+      {/* Success Popup Modal */}
+      {showSuccessModal && submittedData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in">
+          {/* Backdrop Click */}
+          <div
+            className="absolute inset-0"
+            onClick={() => setShowSuccessModal(false)}
+          />
+
+          <div className="relative w-full max-w-lg rounded-3xl bg-[#0e101f] border border-white/20 border-t-emerald-400/60 shadow-[0_25px_70px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.25)] p-6 sm:p-8 text-center overflow-hidden z-10">
+            {/* Ambient emerald orb */}
+            <div className="absolute -top-20 -left-20 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-48 h-48 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Close button */}
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Close modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Glowing Success Icon */}
+            <div className="relative w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(52,211,153,0.5)]">
+              <CheckCircle className="w-8 h-8" />
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping" />
+            </div>
+
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[10px] font-mono uppercase tracking-widest mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              TRANSMISSION SUCCESSFUL
+            </div>
+
+            {/* Title & Desc */}
+            <h3 className="text-xl sm:text-2xl font-extrabold text-white font-serif mb-2">
+              Inquiry Sent Successfully!
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-5">
+              Your inquiry has been formulated and redirected to our official WhatsApp (<span className="text-emerald-400 font-mono font-bold">{PRIMARY_WHATSAPP_DISPLAY}</span>).
+            </p>
+
+            {/* Summary Card */}
+            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-left space-y-2 mb-6">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 border-b border-white/5 pb-1 flex justify-between items-center">
+                <span>Inquiry Summary</span>
+                <span className="text-emerald-400 flex items-center gap-1 font-mono">
+                  <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-400 inline shrink-0" />
+                  {PRIMARY_WHATSAPP_DISPLAY}
+                </span>
+              </div>
+              <div className="text-xs space-y-1 pt-1">
+                <p className="text-neutral-300">
+                  <span className="text-neutral-400">Name:</span> <strong className="text-white ml-1">{submittedData.name}</strong>
+                </p>
+                <p className="text-neutral-300">
+                  <span className="text-neutral-400">Phone:</span> <span className="text-white font-mono ml-1">{submittedData.phone}</span>
+                </p>
+                {submittedData.email && (
+                  <p className="text-neutral-300">
+                    <span className="text-neutral-400">Email:</span> <span className="text-white font-mono ml-1">{submittedData.email}</span>
+                  </p>
+                )}
+                <div className="pt-1.5 text-neutral-300">
+                  <span className="text-neutral-400 text-[11px] block mb-1">Message Preview:</span>
+                  <p className="text-[11px] text-neutral-200 bg-black/40 p-2.5 rounded-xl italic border border-white/5 leading-relaxed line-clamp-3">
+                    &ldquo;{submittedData.message}&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <a
+                href={submittedData.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-400/20"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-black shrink-0" />
+                <span>Open WhatsApp</span>
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs uppercase tracking-wider transition-all border border-white/15 cursor-pointer"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

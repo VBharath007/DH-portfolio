@@ -84,13 +84,13 @@ export const companyData: CompanyInfo = {
     {
       id: "stat-exp",
       label: "Experience",
-      value: "9+ Years",
+      value: "10+ Years",
       description: "Dedicated professional leadership",
     },
     {
       id: "stat-direct",
       label: "Direct Client Projects",
-      value: "₹46+ Cr",
+      value: "₹48+ Cr",
       description: "Delivered direct client capital valuation",
     },
     {

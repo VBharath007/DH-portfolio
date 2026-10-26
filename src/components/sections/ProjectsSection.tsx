@@ -14,8 +14,6 @@ const FILTER_CATEGORIES = [
   "All Projects",
   "Residential",
   "Commercial",
-  "Interior Design",
-  "Exterior Design",
 ] as const;
 
 type FilterCat = typeof FILTER_CATEGORIES[number];
@@ -30,8 +28,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigateTab 
       const filter = activeCategory.toLowerCase();
       if (activeCategory === "Residential") return cat.includes("residential") || cat.includes("villa") || cat.includes("house");
       if (activeCategory === "Commercial") return cat.includes("commercial") || cat.includes("office") || cat.includes("retail");
-      if (activeCategory === "Interior Design") return cat.includes("interior");
-      if (activeCategory === "Exterior Design") return cat.includes("exterior") || cat.includes("elevation");
       return cat.includes(filter);
     });
   }, [activeCategory]);

@@ -59,11 +59,11 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
         <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block font-semibold">
           TRACK RECORD &bull; MILESTONES
         </span>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-2.5 w-full">
-          <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
+        <div className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full">
+          {/* <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
             <div className="text-xl sm:text-2xl font-extrabold text-white font-mono relative z-10">
               <CountUp
-                to={9}
+                to={10}
                 suffix="+"
                 mode="roll"
                 easing="spring"
@@ -75,8 +75,8 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               <span className="whitespace-nowrap block">Years of Rich</span>
               <span className="whitespace-nowrap block">Experience</span>
             </div>
-          </div>
-          <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
+          </div> */}
+          {/* <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
             <div className="text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono relative z-10">
               <CountUp
                 to={46}
@@ -92,8 +92,8 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               <span className="whitespace-nowrap block">Direct Client</span>
               <span className="whitespace-nowrap block">Projects</span>
             </div>
-          </div>
-          <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
+          </div> */}
+          {/* <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
             <div className="text-xl sm:text-2xl font-extrabold text-white font-mono relative z-10">
               <CountUp
                 to={12}
@@ -108,7 +108,7 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               <span className="whitespace-nowrap block font-semibold text-neutral-300">Corporate Projects</span>
               <span className="whitespace-nowrap block text-[8.5px] sm:text-[9.5px] text-neutral-400">EPC / PMC</span>
             </div>
-          </div>
+          </div> */}
           <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
             <div className="text-xl sm:text-2xl font-extrabold text-white font-mono relative z-10">
               <CountUp
@@ -125,7 +125,7 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               <span className="whitespace-nowrap block">Capacity</span>
             </div>
           </div>
-          <div className="col-span-2 sm:col-span-1 md:col-span-1 p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
+          <div className="p-2.5 sm:p-3 xl:p-3.5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group flex flex-col justify-between">
             <div className="text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono relative z-10">
               <CountUp
                 to={112}
@@ -197,18 +197,15 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               <h5 className="text-sm font-semibold text-white">
                 Master&apos;s degree, Advanced Construction Management
               </h5>
-              <p className="text-xs text-neutral-400 mt-1">
-                National Institute of Construction Management and Research (NICMAR)
-              </p>
             </div>
 
             <div className="pt-3.5 border-t border-white/10">
               <h5 className="text-sm font-semibold text-white">
                 Master of Business Administration (MBA), Project Management
               </h5>
-              <p className="text-xs text-neutral-400 mt-1">
+              {/* <p className="text-xs text-neutral-400 mt-1">
                 Strategic Project Governance &amp; Turnkey Lifecycle Stewardship
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

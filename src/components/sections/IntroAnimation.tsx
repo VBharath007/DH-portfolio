@@ -193,7 +193,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
             </motion.div>
 
             {/* Floating Information Cards Animated Flanking the Portrait */}
-            {/* Left Top Card: 9+ Years Experience */}
+            {/* Left Top Card: 10+ Years Experience */}
             <motion.div
               initial={{ opacity: 0, x: -30, y: -20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -203,13 +203,13 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
               <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-semibold block">
                 Total Experience
               </span>
-              <div className="font-serif-luxury text-2xl font-bold text-black">9+ Years</div>
+              <div className="font-serif-luxury text-2xl font-bold text-black">10+ Years</div>
               <span className="text-[11px] text-neutral-600 leading-tight block mt-0.5">
                 Leadership in PMC, EPC &amp; Delivery
               </span>
             </motion.div>
 
-            {/* Right Top Card: ₹46+ Cr Direct Client Projects */}
+            {/* Right Top Card: ₹48+ Cr Direct Client Projects */}
             <motion.div
               initial={{ opacity: 0, x: 30, y: -20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -219,7 +219,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
               <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-semibold block">
                 Direct Client Projects
               </span>
-              <div className="font-serif-luxury text-2xl font-bold text-black">₹46+ Cr</div>
+              <div className="font-serif-luxury text-2xl font-bold text-black">₹48+ Cr</div>
               <span className="text-[11px] text-neutral-600 leading-tight block mt-0.5">
                 Executed client project capital
               </span>

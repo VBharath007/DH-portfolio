@@ -7,7 +7,7 @@ import { ceoProfileData } from "@/data/ceo";
 import { SplitText } from "@/components/ui/split-text";
 import CountUp from "@/components/ui/CountUp";
 
-const TARGET_TEXT = "CEO & Founder";
+const TARGET_TEXT = "Managing Director";
 
 interface MarvioHeroProps {
   onNavigate?: (section: string) => void;
@@ -17,7 +17,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typewriter effect that types "CEO & Founder", pauses, backspaces, and repeats
+  // Typewriter effect that types "Managing Director", pauses, backspaces, and repeats
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
@@ -74,7 +74,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
           </span>
         </div>
         <p className="text-xs sm:text-base text-neutral-300 leading-relaxed max-w-3xl pt-1 sm:pt-2">
-          Managing Director leading DANAM HOLDINGS with over 9+ years of dedicated leadership in Turnkey Construction, Project Management Consultancy (PMC), and EPC Governance across South India.
+          A visionary leader at DANAM HOLDINGS with over 9 years of dedicated experience in Turnkey Construction, Project Management Consultancy (PMC), and EPC Governance across South India.
         </p>
       </div>
 
@@ -91,7 +91,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#121426] via-[#121426]/10 to-transparent pointer-events-none" />
-          
+
           <div className="absolute bottom-4 left-4 right-4 z-10 space-y-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-400/20 border border-emerald-400/40 backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -110,7 +110,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
 
         {/* Executive Highlights Bar */}
         <div className="px-4 py-3 flex items-center justify-between text-[11px] text-neutral-400 font-mono border-t border-white/10">
-          <span className="text-emerald-400 font-semibold">9+ Yrs Infrastructure</span>
+          <span className="text-emerald-400 font-semibold">10+ Yrs Infrastructure</span>
           <span>EPC &bull; PMC Governance</span>
         </div>
       </div>
@@ -120,7 +120,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
         <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group">
           <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono relative z-10">
             <CountUp
-              to={9}
+              to={10}
               suffix="+"
               mode="roll"
               easing="spring"
@@ -136,7 +136,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
         <div className="p-4 sm:p-5 rounded-2xl bg-[#121426]/90 border border-white/15 border-t-white/30 backdrop-blur-xl shadow-xl shadow-black/40 hover:bg-[#181a32] hover:border-emerald-400/50 hover:shadow-emerald-500/10 transition-all duration-300 relative group">
           <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono relative z-10">
             <CountUp
-              to={46}
+              to={48}
               prefix="₹"
               suffix="+ Cr"
               mode="roll"
