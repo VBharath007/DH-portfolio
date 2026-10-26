@@ -157,9 +157,6 @@ Sent via Danam Holdings Portfolio`;
                 <span>+91 95663 20944</span>
               </a>
             </div>
-            <span className="text-[11px] text-neutral-400 block mt-1.5">
-              Direct Executive Lines &bull; Mon - Sat 9:00 AM - 7:00 PM IST
-            </span>
           </div>
         </div>
 
