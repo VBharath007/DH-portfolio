@@ -26,7 +26,7 @@ export const AboutSection: React.FC = () => {
 
         {/* Two-Column Company Foundation & Visual Dossier */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
-          {/* Left Column: CEO Executive Portrait & Dossier - Animates from LEFT */}
+          {/* Left Column: CEO Executive Portrait & Profile - Animates from LEFT */}
           <ScrollReveal direction="left" delay={0.1} className="lg:col-span-5 space-y-6">
             <div className="relative aspect-[4/5] w-full glass-panel rounded-2xl border border-neutral-300/90 overflow-hidden shadow-xl flex items-end justify-center group">
               <Image

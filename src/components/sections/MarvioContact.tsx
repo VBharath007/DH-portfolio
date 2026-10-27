@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink, CheckCircle, ArrowLeft, X } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink, CheckCircle, ArrowLeft, X, AlertCircle } from "lucide-react";
 import { companyData } from "@/data/company";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
@@ -19,6 +19,10 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
     phone: "",
     message: "",
   });
+  const [errors, setErrors] = useState<{
+    name?: string;
+    phone?: string;
+  }>({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [submittedData, setSubmittedData] = useState<{
     name: string;
@@ -31,9 +35,32 @@ export const MarvioContact: React.FC<MarvioContactProps> = ({ onNavigate }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const trimmedName = formData.name.trim();
+    const phoneDigits = formData.phone.replace(/\D/g, "");
+    const newErrors: { name?: string; phone?: string } = {};
+
+    if (!trimmedName || trimmedName.length < 3) {
+      newErrors.name = "Full Name must be at least 3 characters.";
+    } else if (/\d/.test(trimmedName)) {
+      newErrors.name = "Numbers are not allowed in the name field.";
+    }
+
+    if (!phoneDigits) {
+      newErrors.phone = "Phone number is required (10 digits).";
+    } else if (phoneDigits.length !== 10) {
+      newErrors.phone = "Please enter a valid 10-digit phone number.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
     // Format professional WhatsApp message with all form fields
     const formattedMessage =
-`*New Executive Inquiry - DANAM HOLDINGS*
+      `*New Executive Inquiry - DANAM HOLDINGS*
 ----------------------------------------
 *Name:* ${formData.name.trim()}
 *Phone:* ${formData.phone.trim()}
@@ -208,31 +235,104 @@ Sent via Danam Holdings Portfolio`;
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                Your Full Name *
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-[10px] font-mono uppercase text-neutral-400">
+                  Your Full Name *
+                </label>
+                <span className="text-[10px] text-neutral-400 font-mono">Min 3 chars &bull; No numbers</span>
+              </div>
               <input
                 type="text"
                 required
+                minLength={3}
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onKeyDown={(e) => {
+                  // Block numeric characters 0-9
+                  if (/^[0-9]$/.test(e.key) && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={(e) => {
+                  // Strictly remove any numbers even if pasted
+                  const sanitizedName = e.target.value.replace(/[0-9]/g, "");
+                  setFormData({ ...formData, name: sanitizedName });
+                  if (errors.name && sanitizedName.trim().length >= 3) {
+                    setErrors((prev) => ({ ...prev, name: undefined }));
+                  }
+                }}
                 placeholder="e.g. Anand Kumar"
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
+                className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.name ? "border-red-500/80 focus:border-red-500" : "border-white/10 focus:border-emerald-400"
+                  } text-white placeholder-neutral-500 text-xs focus:outline-none transition-colors`}
               />
+              {errors.name && (
+                <span className="flex items-center gap-1.5 text-[11px] text-red-400 mt-1.5 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {errors.name}
+                </span>
+              )}
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono uppercase text-neutral-400 mb-1.5">
-                Phone Number *
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-[10px] font-mono uppercase text-neutral-400">
+                  Phone Number *
+                </label>
+                {/* <span className="text-[10px] text-neutral-400 font-mono">Numbers only</span> */}
+              </div>
               <input
                 type="tel"
+                inputMode="numeric"
+                pattern="[0-9]{10}"
+                maxLength={10}
                 required
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+91 98765 43210"
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-emerald-400 transition-colors"
+                onKeyDown={(e) => {
+                  // Allow navigation and editing control keys
+                  const allowedControlKeys = [
+                    "Backspace",
+                    "Delete",
+                    "Tab",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "Home",
+                    "End",
+                    "Enter",
+                  ];
+                  // Block any character that is not 0-9
+                  if (
+                    !allowedControlKeys.includes(e.key) &&
+                    !/^[0-9]$/.test(e.key) &&
+                    !e.ctrlKey &&
+                    !e.metaKey
+                  ) {
+                    e.preventDefault();
+                    return;
+                  }
+                  // Strictly block typing more than 10 digits
+                  const input = e.currentTarget;
+                  const isSelecting = input.selectionStart !== input.selectionEnd;
+                  if (/^[0-9]$/.test(e.key) && formData.phone.length >= 10 && !isSelecting) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={(e) => {
+                  // Strictly allow only numbers (0-9) and cap at exactly 10 digits even on paste
+                  const numbersOnly = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  setFormData({ ...formData, phone: numbersOnly });
+                  if (errors.phone && numbersOnly.length === 10) {
+                    setErrors((prev) => ({ ...prev, phone: undefined }));
+                  }
+                }}
+                placeholder="9876543210"
+                className={`w-full px-4 py-3 rounded-xl bg-white/5 border ${errors.phone ? "border-red-500/80 focus:border-red-500" : "border-white/10 focus:border-emerald-400"
+                  } text-white placeholder-neutral-500 text-xs focus:outline-none transition-colors`}
               />
+              {errors.phone && (
+                <span className="flex items-center gap-1.5 text-[11px] text-red-400 mt-1.5 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {errors.phone}
+                </span>
+              )}
             </div>
           </div>
 

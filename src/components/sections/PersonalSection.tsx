@@ -43,7 +43,7 @@ export const PersonalSection: React.FC<PersonalSectionProps> = ({ onNavigateTab 
           subtitle="Visionary leadership, premier academic engineering and management qualifications, and statutory corporate stewardship across DANAM HOLDINGS."
         />
 
-        {/* 1. Main Executive Dossier: Portrait + Executive Profile & Statutory Credentials */}
+        {/* 1. Main Executive profile: Portrait + Executive Profile & Statutory Credentials */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-10">
           
           {/* Left Column: Official CEO Portrait Card */}
@@ -125,7 +125,7 @@ export const PersonalSection: React.FC<PersonalSectionProps> = ({ onNavigateTab 
                     </div>
                     <div>
                       <span className="text-[10px] uppercase font-mono tracking-widest text-neutral-400 block">
-                        EXECUTIVE DOSSIER
+                        EXECUTIVE Profile
                       </span>
                       <h4 className="font-serif-luxury text-xl font-bold text-neutral-900">
                         Biography &amp; Leadership Profile

@@ -65,6 +65,9 @@ export const ContactSection: React.FC = () => {
     } else if (trimmedName.length < 3) {
       newErrors.name = "Full Name must be at least 3 characters.";
       alertMessages.push("Full Name must have at least 3 characters.");
+    } else if (/\d/.test(trimmedName)) {
+      newErrors.name = "Numbers are not allowed in the Full Name.";
+      alertMessages.push("Numbers are not allowed in the Full Name.");
     }
 
     // Mobile number validation: numbers only, 10 digits
@@ -266,10 +269,17 @@ export const ContactSection: React.FC = () => {
                   <input
                     id="name"
                     type="text"
+                    minLength={3}
                     value={formData.name}
+                    onKeyDown={(e) => {
+                      if (/^[0-9]$/.test(e.key) && !e.ctrlKey && !e.metaKey) {
+                        e.preventDefault();
+                      }
+                    }}
                     onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                      if (errors.name) setErrors({ ...errors, name: undefined });
+                      const sanitized = e.target.value.replace(/[0-9]/g, "");
+                      setFormData({ ...formData, name: sanitized });
+                      if (errors.name && sanitized.trim().length >= 3) setErrors({ ...errors, name: undefined });
                     }}
                     placeholder="e.g. S. Murugesan"
                     className={`w-full px-4 py-3 glass-input text-xs sm:text-sm text-neutral-900 transition-colors focus:outline-none focus:border-black rounded-xl ${errors.name ? "border-red-500 bg-red-50/20" : ""

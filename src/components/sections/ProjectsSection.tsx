@@ -128,7 +128,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigateTab 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-emerald-300">
-              DISCOVER FULL DOSSIER
+             DISCOVER FULL DETAILS
             </span>
           </div>
 

@@ -32,7 +32,7 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
           <span className="relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">Back to Home</span>
         </button>
         <span className="hidden sm:inline-block text-[11px] font-mono uppercase tracking-widest text-neutral-400 text-right">
-          Executive Dossier &bull; Managing Director
+          Executive Overview &bull; Managing Director
         </span>
       </div>
 
@@ -156,7 +156,7 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
             </h4>
           </div>
           <p className="text-xs text-neutral-300 leading-relaxed relative z-10">
-            End-to-end execution combining architectural integrity, engineering rigor, and timeline discipline.
+            End-to-end execution combining architectural integrity, engineering Excellence, and timeline discipline.
           </p>
         </div>
 
@@ -186,9 +186,6 @@ export const MarvioAbout: React.FC<MarvioAboutProps> = ({ onNavigate }) => {
               ACADEMIC FOUNDATION
             </span>
           </div>
-          <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider reflective-glass-pill px-3 py-1 rounded-full">
-            Postgraduate Rigor
-          </span>
         </div>
 
         <div className="pt-2 relative z-10">

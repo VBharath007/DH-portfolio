@@ -55,7 +55,7 @@ A luxury, fully responsive executive CEO portfolio website built for **DHANAM HO
 - **About**: Company history (founded 2014 in Madurai), corporate vision, operational profile, verified statistics, and GST compliance.
 - **Personal**: N.E.Praveen Elangovan profile, qualifications (Master's in Advanced Construction Management, MBA in Project Management), leadership pillars, and LinkedIn.
 - **Services**: Confirmed residential and commercial building work, plus PMC, EPC, and project delivery capabilities.
-- **Projects**: Clean architectural placeholder state awaiting client dossier clearance.
+- **Projects**: Clean architectural placeholder state awaiting client detail clearance.
 - **Teams**: Clean executive directory placeholder highlighting 50+ Team Capacity.
 - **Testimonials**: Clean client assurance placeholder for pending video testimonials.
 - **Contact**: Madurai office address, clickable `tel:` links, direct WhatsApp chat links, Google Maps "Get Directions" button, and official social channels.

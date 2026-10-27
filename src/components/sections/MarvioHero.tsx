@@ -74,7 +74,7 @@ export const MarvioHero: React.FC<MarvioHeroProps> = ({ onNavigate }) => {
           </span>
         </div>
         <p className="text-xs sm:text-base text-neutral-300 leading-relaxed max-w-3xl pt-1 sm:pt-2">
-          A visionary leader at DANAM HOLDINGS with over 9 years of dedicated experience in Turnkey Construction, Project Management Consultancy (PMC), and EPC Governance across South India.
+          A visionary leader at DANAM HOLDINGS with over 10 years of dedicated experience in Turnkey Construction, Project Management Consultancy (PMC), and EPC Governance across South India.
         </p>
       </div>
 
