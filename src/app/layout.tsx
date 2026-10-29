@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://danamholdings.com",
+    url: "https://danamholdings.in",
     title: "DANAM HOLDINGS — N.E.Praveen Elangovan | Managing Director",
     description:
       "A Vision to Create Value, A Commitment to Transform Assets. Towards Fortune Unfoldings. Construction, PMC, EPC & Project Delivery in Madurai, Tamil Nadu.",

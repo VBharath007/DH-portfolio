@@ -52,33 +52,29 @@ export const MarvioDrawer: React.FC<MarvioDrawerProps> = ({ isOpen, onClose, onN
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-stretch transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isOpen
+      className={`fixed inset-0 z-50 flex items-stretch transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none delay-500"
-      }`}
+        }`}
     >
       {/* Dark Blur Backdrop */}
       <div
         onClick={onClose}
-        className={`absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       {/* Main Sliding Drawer Body: Slides from Right to Left on open, Left to Right on close */}
       <div
-        className={`relative w-full h-full flex flex-col md:flex-row bg-[#0c0d19] overflow-hidden shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`relative w-full h-full flex flex-col md:flex-row bg-[#0c0d19] overflow-hidden shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Left Side: Luxury Interior Showcase Pane */}
         <div
-          className={`hidden md:block md:w-5/12 lg:w-5/12 xl:w-5/12 relative min-h-full bg-[#120f26] border-r border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isOpen
+          className={`hidden md:block md:w-5/12 lg:w-5/12 xl:w-5/12 relative min-h-full bg-[#120f26] border-r border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen
               ? "translate-x-0 opacity-100 scale-100 delay-150"
               : "-translate-x-12 opacity-0 scale-105"
-          }`}
+            }`}
         >
           <Image
             src="/images/marvio/menu-drawer-luxury-interior.jpg"
@@ -93,9 +89,8 @@ export const MarvioDrawer: React.FC<MarvioDrawerProps> = ({ isOpen, onClose, onN
 
         {/* Right Side: Navigation Menu & Coordinates Pane */}
         <div
-          className={`w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex flex-col justify-between px-6 sm:px-10 lg:px-12 py-5 sm:py-6 overflow-y-auto min-h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isOpen ? "translate-x-0 opacity-100 delay-100" : "translate-x-16 opacity-0"
-          }`}
+          className={`w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex flex-col justify-between px-6 sm:px-10 lg:px-12 py-5 sm:py-6 overflow-y-auto min-h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-x-0 opacity-100 delay-100" : "translate-x-16 opacity-0"
+            }`}
         >
           {/* Top Controls: Logo Lockup, Contact Button, Social Icons, Close Circular Trigger */}
           <div className="flex items-center justify-between pb-4 border-b border-white/10 gap-3">
@@ -167,9 +162,8 @@ export const MarvioDrawer: React.FC<MarvioDrawerProps> = ({ isOpen, onClose, onN
                   style={{
                     transitionDelay: isOpen ? `${200 + idx * 70}ms` : "0ms",
                   }}
-                  className={`group relative w-full text-left cursor-pointer transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] py-1 ${
-                    isOpen ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
-                  }`}
+                  className={`group relative w-full text-left cursor-pointer transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] py-1 ${isOpen ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+                    }`}
                 >
                   {/* Rolling text */}
                   <div className="relative overflow-hidden h-[46px] sm:h-[64px] lg:h-[72px]">
@@ -243,16 +237,16 @@ export const MarvioDrawer: React.FC<MarvioDrawerProps> = ({ isOpen, onClose, onN
 
               <div className="space-y-1 text-sm">
                 <a
-                  href="mailto:contact@danamholdings.com"
+                  href="mailto:danamholdings.in"
                   className="block text-neutral-300 hover:text-emerald-400 transition-colors"
                 >
-                  contact@danamholdings.com
+                  danamholdings.in
                 </a>
                 <a
-                  href="mailto:info@danamholdings.com"
+                  href="mailto:info@danamholdings.in"
                   className="block text-neutral-300 hover:text-emerald-400 transition-colors"
                 >
-                  info@danamholdings.com
+                  info@danamholdings.in
                 </a>
               </div>
             </div>

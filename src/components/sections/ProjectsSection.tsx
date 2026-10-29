@@ -4,11 +4,21 @@ import React, { useState, useMemo } from "react";
 import { projectsData } from "@/data/projects";
 import { Project } from "@/types";
 import { ProjectCard } from "@/components/ui/ProjectCard";
-import { Sparkles, Layers, ArrowLeft, ArrowRight, Mail } from "lucide-react";
+import { Sparkles, Layers, ArrowLeft, ArrowRight, Mail, Building2 } from "lucide-react";
 
 interface ProjectsSectionProps {
   onNavigateTab?: (tab: string) => void;
 }
+
+const BRAND_CLIENTS = [
+  { name: "MSD", logo: "/Brand Clients/MSD.png" },
+  { name: "OYO", logo: "/Brand Clients/OYO.png" },
+  { name: "Rajmahal", logo: "/Brand Clients/Rajmahal.png" },
+  { name: "SACS", logo: "/Brand Clients/SACS.png" },
+  { name: "Seetharam Jewellers", logo: "/Brand Clients/Seetharam.png" },
+  { name: "Thangamayil", logo: "/Brand Clients/Thangamayil.png" },
+  { name: "Theni Anantham", logo: "/Brand Clients/TheniAnantham.png" },
+];
 
 const FILTER_CATEGORIES = [
   "All Projects",
@@ -32,9 +42,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigateTab 
     });
   }, [activeCategory]);
 
-  // Display only 4 project cards per user request
+  // Display 8 project cards per user request (4 initial + 4 additional)
   const displayedProjects = useMemo(() => {
-    return filteredProjects.slice(0, 4);
+    return filteredProjects.slice(0, 8);
   }, [filteredProjects]);
 
   return (
@@ -94,7 +104,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigateTab 
         ))}
       </div>
 
-      {/* Projects Grid: Display only 4 Project Cards */}
+      {/* Projects Grid: Display 8 Project Cards */}
       <div
         key={activeCategory}
         className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 pt-2 animate-slide-from-right"
@@ -148,6 +158,52 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigateTab 
           >
             <span>Contact Now</span>
             <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </div>
+
+      {/* "Our Branded Clients" Infinite Auto-Scroll Showcase (Left to Right) */}
+      <div className="w-full pt-8 sm:pt-12 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full reflective-glass-pill mb-3 text-emerald-400">
+              <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em]">
+                TRUSTED PARTNERSHIPS
+              </span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-serif">
+              Our Branded Clients
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400 max-w-xl mt-1.5 leading-relaxed">
+              Proud to deliver exceptional architectural, construction, and turnkey engineering solutions for iconic corporate and retail leaders.
+            </p>
+          </div>
+
+          <div className="hidden sm:inline-flex items-center gap-2 text-xs font-mono text-neutral-400 bg-white/[0.04] px-3.5 py-1.5 rounded-full border border-white/10 shrink-0">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Auto-Scrolling Showcase</span>
+          </div>
+        </div>
+
+        {/* Seamless Infinite Marquee Track (Left to Right) - Zero Borders, Native Website Background */}
+        <div className="relative w-full overflow-hidden py-4 sm:py-6">
+          {/* Auto Scrolling Content Moving Left to Right */}
+          <div className="flex items-center gap-8 sm:gap-12 animate-marquee-ltr hover:[animation-play-state:paused] cursor-pointer">
+            {[...BRAND_CLIENTS, ...BRAND_CLIENTS, ...BRAND_CLIENTS, ...BRAND_CLIENTS].map((client, idx) => (
+              <div
+                key={`${client.name}-${idx}`}
+                className="shrink-0 group/client relative h-16 sm:h-20 px-4 sm:px-6 flex items-center justify-center transition-all duration-300 hover:scale-110 select-none"
+                title={client.name}
+              >
+                <img
+                  src={client.logo}
+                  alt={`${client.name} Logo`}
+                  className="max-h-12 sm:max-h-14 w-auto max-w-[140px] sm:max-w-[170px] object-contain transition-transform duration-300 group-hover/client:scale-105"
+                  loading="eager"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

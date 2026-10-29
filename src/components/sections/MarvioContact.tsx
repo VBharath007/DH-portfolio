@@ -197,10 +197,10 @@ Sent via Danam Holdings Portfolio`;
               DIGITAL DISPATCH
             </span>
             <a
-              href="mailto:contact@danamholdings.com"
+              href="mailto:danamholdings.in"
               className="text-sm font-bold text-white hover:text-emerald-400 transition-colors font-mono"
             >
-              contact@danamholdings.com
+              danamholdings.in
             </a>
             <span className="text-[11px] text-neutral-400 block mt-0.5">
               Direct Inquiries &amp; Turnkey Tenders
